@@ -159,16 +159,12 @@ def create_tcx_plugin():
         return tcx
 
 def create_strava_uploader_plugin():
-    import antd.strava_uploader as strava_uploader
-    try: 
-        from antd.strava_key import key
-    except: 
-        _log.warning("To use the Strava Uploader you must include a strava_key.py file.")
-        return
-    
-    uploader = strava_uploader.StravaUploader()
-    uploader.key = key
-    return uploader
+    if _cfg.getboolean("antd.strava_uploader", "enabled"):
+        import antd.strava_uploader as strava_uploader
+        
+        uploader = strava_uploader.StravaUploader() 
+        uploader.key = _cfg.get("antd.strava_uploader", "key")
+        return uploader
     
 def create_notification_plugin():
     try:
