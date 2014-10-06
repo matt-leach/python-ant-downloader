@@ -2,6 +2,8 @@
 *.swp
 *.raw
 *~
+.pydevproject
+.project
 build
 python_ant_downloader.egg-info
 dist
