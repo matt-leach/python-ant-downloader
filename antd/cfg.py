@@ -33,7 +33,7 @@ import binascii
 import logging
 import sys
 import pkg_resources
-import logging
+
 
 _log = logging.getLogger("antd.cfg")
 _cfg = ConfigParser.SafeConfigParser()
@@ -158,6 +158,18 @@ def create_tcx_plugin():
         except ConfigParser.NoOptionError: pass
         return tcx
 
+def create_strava_uploader_plugin():
+    import antd.strava_uploader as strava_uploader
+    try: 
+        from antd.strava_key import key
+    except: 
+        _log.warning("To use the Strava Uploader you must include a strava_key.py file.")
+        return
+    
+    uploader = strava_uploader.StravaUploader()
+    uploader.key = key
+    return uploader
+    
 def create_notification_plugin():
     try:
         if _cfg.getboolean("antd.notification", "enabled"):

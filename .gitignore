@@ -4,6 +4,8 @@
 *~
 .pydevproject
 .project
+antd/strava_key.py
+
 build
 python_ant_downloader.egg-info
 dist

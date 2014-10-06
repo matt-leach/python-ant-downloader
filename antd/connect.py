@@ -262,5 +262,4 @@ class StravaConnect(plugin.Plugin):
 
 class InvalidLogin(Exception): pass
 
-
 # vim: ts=4 sts=4 et
