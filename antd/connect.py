@@ -113,7 +113,7 @@ class GarminConnect(plugin.Plugin):
                             continue
                         else:
                             login_invalid = True
-                            raise APIException("Invalid login", block=True, user_exception=UserException(UserExceptionType.Authorization, intervention_required=True))
+                            raise APIException("Invalid login") #, block=True, user_exception=UserException(UserExceptionType.Authorization, intervention_required=True))
                     else:
                         raise APIException("Mystery login error %s" % self.get_response_text(resp))
                 _log.debug("Old style login complete")
@@ -170,7 +170,7 @@ class GarminConnect(plugin.Plugin):
             ticket_match = re.search("ticket=([^']+)'", self.get_response_text(ssoResp))
             if not ticket_match:
                 login_invalid = True
-                raise APIException("Invalid login", block=True, user_exception=UserException(UserExceptionType.Authorization, intervention_required=True))
+                raise APIException("Invalid login") #, block=True, user_exception=UserException(UserExceptionType.Authorization, intervention_required=True))
             ticket = ticket_match.groups(1)[0]
 
             # ...AND WE'RE NOT DONE YET!
@@ -262,4 +262,5 @@ class StravaConnect(plugin.Plugin):
 
 class InvalidLogin(Exception): pass
 
+class APIException(Exception): pass
 # vim: ts=4 sts=4 et

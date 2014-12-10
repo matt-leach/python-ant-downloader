@@ -31,11 +31,13 @@ class StravaUploader(plugin.Plugin):
         f=file(file_name)
         
         activity_name = raw_input("Please enter the activity name: ")
+        description = raw_input("Please enter a description.")
         
         params = {"access_token": self.key,
                   "activity_type": "run",
                   "data_type": format,
-                  "name": activity_name
+                  "name": activity_name,
+                  "description": description
                   }
         
         r = requests.post(strava_url+"uploads", params=params, files={"file": f})
