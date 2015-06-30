@@ -28,7 +28,7 @@ class StravaUploader(plugin.Plugin):
         
     def upload(self, file_name, format):
         _log.info("Uploading %s to Strava via API.", file_name)
-        f=file(file_name)
+        f = file(file_name)
         
         activity_name = raw_input("Please enter the activity name: ")
         description = raw_input("Please enter a description.")
@@ -43,7 +43,7 @@ class StravaUploader(plugin.Plugin):
         r = requests.post(strava_url+"uploads", params=params, files={"file": f})
         if r.status_code == 201:
             _log.info("Activity uploaded successful.")
-            try:_log.info("Strava API: %s" % r.json()["status"])
+            try: _log.info("Strava API: %s" % r.json()["status"])
             except: pass
         else:
             try: _log.error("Strava API: %s" % r.json()["error"])
